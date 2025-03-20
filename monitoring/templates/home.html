@@ -1,0 +1,24 @@
+{% load static %}
+{% include 'components/header.html' %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div class="container mt-5">
+    <h1 class="text-center">Добро пожаловать в систему мониторинга здоровья</h1>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <img src="{% static 'images/health_monitoring.jpg' %}" class="img-fluid rounded shadow" alt="Мониторинг здоровья">
+        </div>
+        <div class="col-md-6">
+            <p class="lead">
+                Эта система предназначена для отслеживания состояния здоровья учащихся.
+                Вы можете добавить новые записи, просматривать статистику и управлять списком студентов.
+            </p>
+            <a href="{% url 'student_list' %}" class="btn btn-primary">Перейти к списку учащихся</a>
+            <a href="{% url 'health_statistics' %}" class="btn btn-success">Статистика</a>
+        </div>
+    </div>
+</div>
+
+{% include 'components/footer.html' %}

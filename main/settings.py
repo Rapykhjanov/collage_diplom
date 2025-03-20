@@ -4,7 +4,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-n4l^2q%^hst&%jl@hx+8ajg6@j2cfjxt9zsx9bu_hgref!dk3b'
 DEBUG = True
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']  # Добавляем локальные хосты
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -13,7 +14,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'monitoring',
+    'monitoring',  # Твое приложение
 ]
 
 MIDDLEWARE = [
@@ -31,7 +32,7 @@ ROOT_URLCONF = 'main.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'monitoring' / 'templates'],  # Основная папка с шаблонами
+        'DIRS': [BASE_DIR / 'monitoring' / 'templates'],  # Папка с шаблонами
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -43,7 +44,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 WSGI_APPLICATION = 'main.wsgi.application'
 
@@ -66,18 +66,16 @@ TIME_ZONE = 'Asia/Bishkek'
 USE_I18N = True
 USE_TZ = True
 
-# Настройки для статических файлов
+# 📌 Статические файлы (CSS, JS, картинки)
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']  # Ожидает, что у тебя есть папка static
 
-# Проверяем, что папка static существует
-STATIC_DIR = BASE_DIR / "static"
-STATICFILES_DIRS = [STATIC_DIR] if STATIC_DIR.exists() else []  # Добавляем, только если папка существует
-
-# Папка для сбора статических файлов при деплое
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# Настройки для медиафайлов
+# 📌 Медиафайлы (загружаемые изображения)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 📌 Добавляем перенаправление на главную после входа
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'

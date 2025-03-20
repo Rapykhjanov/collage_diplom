@@ -11,7 +11,11 @@
         {% for student in students_list %}
         <div class="col-md-4 mb-4">
             <div class="card" style="width: 100%;">
-                <img src="{{ student.image.url }}" class="card-img-top" alt="Фото учащегося">
+                {% if student.image %}
+                    <img src="{{ student.image.url }}" class="card-img-top" alt="Фото учащегося">
+                {% else %}
+                    <img src="{% static 'images/default_avatar.png' %}" class="card-img-top" alt="Нет фото">
+                {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ student.name }}</h5>
                     <p class="card-text">Возраст: {{ student.age }}</p>
