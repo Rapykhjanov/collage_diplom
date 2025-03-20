@@ -1,0 +1,28 @@
+{% load static %}
+{% include 'components/header.html' %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div class="container mt-4 content">
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    <div class="row justify-content-center">
+        {% for student in students_list %}
+        <div class="col-md-4 mb-4">
+            <div class="card" style="width: 100%;">
+                <img src="{{ student.image.url }}" class="card-img-top" alt="Фото учащегося">
+                <div class="card-body">
+                    <h5 class="card-title">{{ student.name }}</h5>
+                    <p class="card-text">Возраст: {{ student.age }}</p>
+                    <a href="{% url 'student_detail' student.id %}" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>Нет доступных студентов.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% include 'components/footer.html' %}
