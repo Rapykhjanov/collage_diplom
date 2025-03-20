@@ -1,25 +1,19 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Student
+from django.shortcuts import render
 
 def home(request):
-    return render(request, 'home.html')
-
-def student_list(request):
-    students = Student.objects.all()
-    return render(request, 'student_list.html', {'students_list': students})
-
-def student_detail(request, student_id):
-    student = get_object_or_404(Student, id=student_id)
-    return render(request, 'student_detail.html', {'student': student})
-
-def student_page(request):
-    return render(request, 'student.html')
+    return render(request, 'monitoring/home.html')
 
 def health_form(request):
-    return render(request, 'health_form.html')
+    return render(request, 'monitoring/health_form.html')
 
-def success_page(request):
-    return render(request, 'success.html')
+def student_list(request):
+    return render(request, 'monitoring/student_list.html')
+
+def student_detail(request, student_id):
+    return render(request, 'monitoring/student_detail.html')
 
 def health_statistics(request):
-    return render(request, 'statistics.html')
+    return render(request, 'monitoring/statistics.html')
+
+def success_page(request):
+    return render(request, 'monitoring/success.html')
